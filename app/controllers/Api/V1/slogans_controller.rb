@@ -9,10 +9,10 @@ module Api
                 #check if the user with email address has submitted
                 if Slogan.exists?(:email => slogan.email)
                     render json: {
-                        status: 'Warning',
+                        status: 'Unprocessable Entity ',
                         message: 'Record already exists',
                         data: slogan,
-                        code: 208
+                        code: 422
                     }
                 else
                     if slogan.save
