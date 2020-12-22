@@ -17,7 +17,7 @@ module Api
                 else
                     if slogan.save
                         render json: {
-                            status: 'Success',
+                            status: 'Created',
                             message: 'Submission saved',
                             data: slogan,
                             code: 201,
@@ -37,7 +37,7 @@ module Api
             def index
                 slogans = Slogan.order('id ASC');
                 render json: {
-                    status: 'Success',
+                    status: 'Ok',
                     message: 'Loaded slogans',
                     data: slogans,
                     code: 200,
@@ -53,10 +53,12 @@ module Api
             def show
                 slogan = Slogan.find(params[:id])
                 render json: {
-                    status: 'Success',
+                    status: 'Ok',
                     message: 'Loaded slogan',
-                    data: slogan},
-                    status: :ok
+                    data: slogan,
+                   code:200
+            }
+                   
             end
 
             # This method deletes a user slogan submission
@@ -64,10 +66,12 @@ module Api
                 slogan = Slogan.find(params[:id])
                 slogan.destroy
                 render json: {
-                    status: 'Success',
+                    status: 'Ok',
                     message: 'Slogan deleted',
-                    data: slogan},
-                    status: :ok
+                    data: slogan,
+                    code:200
+                }
+                   
             end
 
             # This method allow for updating a submitted slogan
@@ -75,16 +79,18 @@ module Api
                 slogan = Slogan.find(params[:id])
                 if slogan.update_attributes(slogan_params)
                     render json: {
-                        status: 'Success',
+                        status: 'Ok',
                         message: 'Slogan updated',
-                        data: slogan},
-                        status: :ok
+                        data: slogan,
+                        code:200
+                }
                 else 
                     render json: {
-                        status: 'Success',
+                        status: 'unprocessable_entity',
                         message: 'Slogan not updated',
                         data: slogan},
-                        status: :unprocessable_entity
+                        code: 422,
+                }
                 end
             end
 

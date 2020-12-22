@@ -3,7 +3,18 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.1'
 gem 'rack-cors', :require => 'rack/cors'
+# Run against the latest stable release
+group :development, :test do
+  gem 'rspec-rails', '~> 4.0.1'
+end
 
+# Or, run against the main branch
+# (requires main-branch versions of all related RSpec libraries)
+# group :development, :test do
+#   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+#     gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+#   end
+# end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 # Use sqlite3 as the database for Active Record
