@@ -32,6 +32,8 @@ module Api
                     end
                 end
             end
+    
+    
 
             # This method returns all the submitted slogans
             def index
@@ -88,7 +90,7 @@ module Api
                     render json: {
                         status: 'unprocessable_entity',
                         message: 'Slogan not updated',
-                        data: slogan},
+                        data: slogan,
                         code: 422,
                 }
                 end
